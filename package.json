@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/clm1010/node-blog/issues"
   },
-  "homepage": "https://github.com/clm1010/node-blog#readme"
+  "homepage": "https://github.com/clm1010/node-blog#readme",
+  "dependencies": {
+    "nodemon": "^1.18.10"
+  }
 }
