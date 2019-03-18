@@ -4,7 +4,7 @@ class BaseModel {
         if (typeof data === 'string') {
             this.message = data
             data = null
-            message = isNull
+            message = null
         }
         if (data) {
             this.data = data
