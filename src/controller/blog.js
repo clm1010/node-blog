@@ -32,7 +32,7 @@ const getDetail = (id) => {
 }
 
 const newBlog = (blogData = {}) => {
-    console.log('newBlog.......' + newBlog)
+    console.log('newBlog.......' + blogData)
     return {
         id: 3
     }
@@ -43,9 +43,15 @@ const updateBlog = (id, blogData = {}) => {
     return true
 }
 
+const delBlog = (id) => {
+    // id 就是要删除博客的 id
+    return id
+}
+
 module.exports = {
     getList,
     getDetail,
     newBlog,
-    updateBlog
+    updateBlog,
+    delBlog
 }
