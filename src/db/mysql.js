@@ -22,7 +22,8 @@ function exec(sql) {
     })
     return promise
 }
-
+// escape 防止 sql 注入
 module.exports = {
-    exec
+    exec,
+    escape: mysql.escape
 }
