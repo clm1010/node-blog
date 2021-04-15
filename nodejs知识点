@@ -1,0 +1,20 @@
+1、NodeJS和JavaScript的区别
+
+ECMAScript
+◆ 定义了语法，写JavaScript和nodejs都必须遵守
+◆ 变量定义，循环、判断、函数
+◆ 原型和原型链、作用域和闭包、异步
+
+JavaScript
+◆ 使用ECMAScript语法规范，外加Web API，缺一不可
+◆ DOM操作，BOM操作，事件绑定，Ajax等
+◆ 两者结合，即可完成浏览器端的任何操作
+
+NodeJS
+◆ 使用ECMAScript语法规范，外加NodeJS API，缺一不可
+◆ 处理http，处理文件等，具体参考http://nodejs.cn/api
+◆ 两者结合，即可完成Server端的任何操作
+
+总结API
+◆ ECMAScript是语法规范
+◆ NodeJS = ECMAScript+NodeJS API
