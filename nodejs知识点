@@ -18,3 +18,25 @@ NodeJS
 总结API
 ◆ ECMAScript是语法规范
 ◆ NodeJS = ECMAScript+NodeJS API
+
+2、http请求概述
+◆ DNS解析一个IP地址，IP地址对应的一台服务器然后客户端和服务器建立TCP连接，发送http请求
+◆ server接收到http请求，处理，并返回
+◆ 客户端接收到返回数据，处理数据（如渲染页面，执行js）
+
+TCP 连接：3次握手
+◆ 第1次：客户端询问服务器你是否可用
+◆ 第2次：服务器告诉客户端自己可用
+◆ 第3次：客户端再次告诉服务器，我知道了，我接下来即将访问
+
+NodeJS 处理 get 请求
+◆ get请求，即客户端向server端取数据，如查询博客列表
+◆ 通过querystring来传递数据，如a.html?a=100&b=200
+◆ 浏览器直接访问，就发送get请求
+
+NodeJS 处理 post 请求
+◆ post请求，即客户端要像服务端传递数据
+◆ 通过post data 传递数据
+
+◆ 
+◆ 
