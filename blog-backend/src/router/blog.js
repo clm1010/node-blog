@@ -23,7 +23,7 @@ const handleBlogRouter = (req, res) => {
 
   // 获取博客列表
   if (method === 'GET' && req.path === '/api/blog/list') {
-    const author = req.query.author || ''
+    let author = req.query.author || ''
     const keyword = req.query.keyword || ''
     // const listData = getList(author, keyword)
     // return new SuccessModel(listData)
@@ -49,9 +49,9 @@ const handleBlogRouter = (req, res) => {
     // return new SuccessModel(data)
 
     const loginCheckResult = loginCheck(req)
-    if(loginCheckResult) {
+    if (loginCheckResult) {
       // 未登录
-      return loginCheck
+      return loginCheckResult
     }
 
     req.body.author = req.session.username
@@ -64,15 +64,15 @@ const handleBlogRouter = (req, res) => {
   // 更新一篇博客
   if (method === 'POST' && req.path === '/api/blog/update') {
     const loginCheckResult = loginCheck(req)
-    if(loginCheckResult) {
+    if (loginCheckResult) {
       // 未登录
-      return loginCheck
+      return loginCheckResult
     }
 
     const result = updateBlog(id, req.body)
     return result.then((res) => {
       if (res) {
-        return new SuccessModel(res)
+        return new SuccessModel()
       } else {
         return new ErrorModel('更新博客失败！')
       }
@@ -82,16 +82,16 @@ const handleBlogRouter = (req, res) => {
   // 删除一篇博客
   if (method === 'POST' && req.path === '/api/blog/del') {
     const loginCheckResult = loginCheck(req)
-    if(loginCheckResult) {
+    if (loginCheckResult) {
       // 未登录
-      return loginCheck
+      return loginCheckResult
     }
 
     const author = req.session.username
     const result = delBlog(id, author)
     return result.then((res) => {
       if (res) {
-        return new SuccessModel(res)
+        return new SuccessModel()
       } else {
         return new ErrorModel('删除博客失败！')
       }

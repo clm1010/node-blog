@@ -66,7 +66,7 @@ const serverHandle = (req, res) => {
 
   // 解析 cookie
   req.cookie = {}
-  const cookieStr = req.headers.cookie || ''
+  const cookieStr = req.headers.cookie || '' // k1=v1;k2=v2;k3=v3
   cookieStr.split(';').forEach((item) => {
     if (!item) {
       return
@@ -164,8 +164,8 @@ const serverHandle = (req, res) => {
         return
       }
 
-      // 未命中路由，返回404
-      res.writeHead(404, { 'Content-type': 'text/plan' })
+      // 未命中路由，返回 404
+      res.writeHead(404, { 'Content-type': 'text/plain' })
       res.write('404 Not Found\n')
       res.end()
     })

@@ -81,8 +81,7 @@ ApI：
    获取 redis：get key
    删除：del key
    获取所有：keys *
-◆ 
-◆ 
-◆ 
-◆ 
-◆ 
+
+6、stream 介绍
+IO 操作的性能瓶颈
+◆ IO 包括 “网络IO” 和 “文件IO”
