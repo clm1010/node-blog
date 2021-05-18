@@ -86,6 +86,8 @@ ApI：
 IO 操作的性能瓶颈
 ◆ IO 包括 “网络IO” 和 “文件IO”
 ◆ 相比于CPU计算和内存读写，IO特点就是慢
-◆
-◆
-◆
+
+7、日志分析
+◆ 如针对 access.log 日志，分析 chrome 的占比
+◆ 日志是按行存储的，一行就是一条日志
+◆ 使用 nodejs 的 readline (基于 stream，效率高)
