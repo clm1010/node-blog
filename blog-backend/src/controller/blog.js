@@ -1,4 +1,4 @@
-const { exec } = require('../db/mysql')
+const { exec, escape } = require('../db/mysql')
 /**
  * @description 获取博客列表
  * @param {*} author 作者

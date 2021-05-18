@@ -91,3 +91,8 @@ IO 操作的性能瓶颈
 ◆ 如针对 access.log 日志，分析 chrome 的占比
 ◆ 日志是按行存储的，一行就是一条日志
 ◆ 使用 nodejs 的 readline (基于 stream，效率高)
+
+8、安全
+◆ sql注入 使用 mysql.escape
+◆ xss攻击
+◆
