@@ -81,8 +81,18 @@ ApI：
    获取 redis：get key
    删除：del key
    获取所有：keys *
-◆ 
-◆ 
-◆ 
-◆ 
-◆ 
+
+6、stream 介绍
+IO 操作的性能瓶颈
+◆ IO 包括 “网络IO” 和 “文件IO”
+◆ 相比于CPU计算和内存读写，IO特点就是慢
+
+7、日志分析
+◆ 如针对 access.log 日志，分析 chrome 的占比
+◆ 日志是按行存储的，一行就是一条日志
+◆ 使用 nodejs 的 readline (基于 stream，效率高)
+
+8、安全
+◆ sql注入 使用 mysql.escape
+◆ xss攻击 安装 npm i xss -S 使用方法 const xss = require('xss')  用xss(输入的内容)
+◆ 密码加密 使用 const crypto = require('crypto')
