@@ -1,4 +1,6 @@
-const { exec, escape } = require('../db/mysql')
+const xss = require('xss')
+const { exec } = require('../db/mysql')
+
 /**
  * @description 获取博客列表
  * @param {*} author 作者
@@ -35,8 +37,9 @@ const getDetail = (id) => {
  */
 const newBlog = (blogData = {}) => {
   // blogData 是一个博客对象，包含 title content author属性
-  const title = blogData.title
-  const content = blogData.content
+  const title = xss(blogData.title)
+  // console.log('title is ', title)
+  const content = xss(blogData.content)
   const author = blogData.author
   const createTime = Date.now()
   const sql = `insert into blogs (title, content, createtime, author) values ('${title}','${content}',${createTime},'${author}');`
@@ -47,7 +50,6 @@ const newBlog = (blogData = {}) => {
     }
   })
 }
-
 /**
  * @description 更新博客
  * @param {*} id 是要更新的博客 id
@@ -56,8 +58,8 @@ const newBlog = (blogData = {}) => {
 const updateBlog = (id, blogData = {}) => {
   // id 是要更新的博客 id
   // blogData 是一个博客对象，包含 title content 属性
-  const title = blogData.title
-  const content = blogData.content
+  const title = xss(blogData.title)
+  const content = xss(blogData.content)
   const sql = `update blogs set title='${title}', content='${content}' where id='${id}';`
   return exec(sql).then((updateData) => {
     console.log('updateData is ', updateData)
