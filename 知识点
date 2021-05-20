@@ -96,3 +96,13 @@ IO 操作的性能瓶颈
 ◆ sql注入 使用 mysql.escape
 ◆ xss攻击 安装 npm i xss -S 使用方法 const xss = require('xss')  用xss(输入的内容)
 ◆ 密码加密 使用 const crypto = require('crypto')
+
+express 知识点
+1、中间件机制
+◆ 有很多 app.use
+◆ 代码中的 next 参数是什么？
+app.get的意思为：只要是/api路由的get请求就会执行后面的处理函数
+app.post的意思为：只要是/api路由的post请求就会执行后面的处理函数
+app.use的意思为：只要是/api路由，不管是什么请求，都会执行后面的处理函数
+如果app.use中的第一个参数不传，那么只要有请求就会执行app.use中注册的方法
+如果不执行next方法，则程序不会继续向下执行。
