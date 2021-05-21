@@ -39,3 +39,8 @@ if (env === 'production') {
     host: '127.0.0.1'
   }
 }
+
+module.exports = {
+  MYSQL_CONF,
+  REDIS_CONF
+}
