@@ -3,6 +3,8 @@ const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
+const session = require('express-session')
+const RedisStore = require('connect-redis')(session)
 
 // const indexRouter = require('./routes/index')
 // const usersRouter = require('./routes/users')
@@ -20,6 +22,22 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 // app.use(express.static(path.join(__dirname, 'public')))
+
+const redisClient = require('./db/redis')
+const sessionStore = new RedisStore({
+  client: redisClient
+})
+app.use(
+  session({
+    secret: 'Limin_#851010#',
+    cookie: {
+      path: '/', // 默认配置
+      httpOnly: true, // 默认配置
+      maxAge: 24 * 60 * 60 * 1000
+    },
+    store: sessionStore
+  })
+)
 
 // app.use('/', indexRouter)
 // app.use('/users', usersRouter)
