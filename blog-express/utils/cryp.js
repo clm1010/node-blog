@@ -20,14 +20,14 @@ function md5(content) {
  * @param {*} password 密码
  * @returns 返回加密内容
  */
-function getPassword(password) {
+function genPassword(password) {
   const str = `password=${password}&key=${SECRET_KEY}`
   return md5(str)
 }
 
 // 生成密码 放入数据库
-// const result = genPassword('321')
+// const result = genPassword('123')
 // console.log(result)
 module.exports = {
-  getPassword
+  genPassword
 }
