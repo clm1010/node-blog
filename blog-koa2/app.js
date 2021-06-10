@@ -13,6 +13,8 @@ const morgan = require('koa-morgan')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
+const user = require('./routes/user')
+const blog = require('./routes/blog')
 
 const { REDIS_CONF } = require('./conf/db')
 
@@ -81,6 +83,8 @@ app.use(
 // routes
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
+app.use(user.routes(), user.allowedMethods())
+app.use(blog.routes(), blog.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {
