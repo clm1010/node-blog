@@ -7,7 +7,7 @@ const { exec } = require('../db/mysql')
  * @param {*} keyword 标题
  * @returns 返回的是 promise
  */
-const getList = (author, keyword) => {
+const getList = async (author, keyword) => {
   let sql =
     'select id, title, content, createtime, author from blogs where 1=1 '
   if (author) {
@@ -18,7 +18,8 @@ const getList = (author, keyword) => {
   }
   sql += `order by createtime desc;`
   console.log(sql)
-  return exec(sql)
+  // 返回 promise
+  return await exec(sql)
 }
 
 /**
@@ -26,11 +27,10 @@ const getList = (author, keyword) => {
  * @param {*} id 博客id
  * @returns
  */
-const getDetail = (id) => {
+const getDetail = async (id) => {
   const sql = `select id, title, content, createtime, author from blogs where id='${id}';`
-  return exec(sql).then((rows) => {
-    return rows[0]
-  })
+  const rows = await exec(sql)
+  return rows[0]
 }
 
 /**
@@ -38,7 +38,7 @@ const getDetail = (id) => {
  * @param {Object} blogData 新建博客对象
  * @returns
  */
-const newBlog = (blogData = {}) => {
+const newBlog = async (blogData = {}) => {
   // blogData 是一个博客对象，包含 title content author属性
   const title = xss(blogData.title)
   // console.log('title is ', title
@@ -46,12 +46,10 @@ const newBlog = (blogData = {}) => {
   const author = blogData.author
   const createTime = Date.now()
   const sql = `insert into blogs (title, content, createtime, author) values ('${title}','${content}','${createTime}','${author}');`
-  return exec(sql).then((insertData) => {
-    console.log('insertData is ', insertData)
-    return {
-      id: insertData.insertId
-    }
-  })
+  const insertData = await exec(sql)
+  return {
+    id: insertData.insertId
+  }
 }
 
 /**
@@ -60,19 +58,18 @@ const newBlog = (blogData = {}) => {
  * @param {*} blogData 博客对象
  * @returns
  */
-const updateBlog = (id, blogData = {}) => {
+const updateBlog = async (id, blogData = {}) => {
   // id 是要更新的博客 id
   // blogData 是一个博客对象，包含 title content 属性
   const title = xss(blogData.title)
   const content = xss(blogData.content)
   const sql = `update blogs set title='${title}', content='${content}' where id='${id}';`
-  return exec(sql).then((updateData) => {
-    console.log('updateData is ', updateData)
-    if (updateData.affectedRows > 0) {
-      return true
-    }
-    return false
-  })
+  const updateData = await exec(sql)
+  console.log('updateData is ', updateData)
+  if (updateData.affectedRows > 0) {
+    return true
+  }
+  return false
 }
 
 /**
@@ -80,17 +77,16 @@ const updateBlog = (id, blogData = {}) => {
  * @param {*} id 是要删除的博客 id
  * @returns
  */
-const delBlog = (id, author) => {
+const delBlog = async (id, author) => {
   //  id 就是要删除博客的 id
   // console.log('delBlog', id)
   const sql = `delete from blogs where id='${id}' and author='${author}';`
-  return exec(sql).then((deleteData) => {
-    console.log('deleteData is ', deleteData)
-    if (deleteData.affectedRows > 0) {
-      return true
-    }
-    return false
-  })
+  const deleteData = await exec(sql)
+  console.log('deleteData is ', deleteData)
+  if (deleteData.affectedRows > 0) {
+    return true
+  }
+  return false
 }
 
 module.exports = {
